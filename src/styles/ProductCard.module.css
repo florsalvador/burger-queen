@@ -1,0 +1,9 @@
+.card {
+  width: 200px;
+  border: 1px solid pink;
+  padding: 15px;
+}
+
+.img {
+  width: 100%;
+}
