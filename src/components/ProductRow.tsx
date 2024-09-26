@@ -19,18 +19,20 @@ function ProductRow({ qty, product, subtotal, removeProduct } : ProductRowProps)
   };
 
   return (
-    <div>
-      {/* <img className={styles.img} src={product.image} alt={product.name} /> */}
+    <div className="relative grid grid-cols-[20%,80%] gap-2 bg-white border rounded-md p-3 text-sm leading-tight my-2">
+      <img src={product.image} alt={product.name} />
       <div>
-        <p>{product.name}</p>
-        <p>{product.price * quantity}</p>
+        <p className="font-semibold">{product.name}</p>
+        <div className="flex justify-between mt-2">
+          <div className="flex gap-2 items-center">
+            <button className="py-1 px-2 bg-slate-200 disabled:bg-slate-50 disabled:text-gray-400" onClick={() => handleUpdate(quantity === 1 ? 1 : quantity - 1)} disabled={quantity > 1 ? false : true}>-</button>
+            {quantity}
+            <button className="py-1 px-2 bg-slate-200" onClick={() => handleUpdate(quantity + 1)}>+</button>
+          </div>
+          <span className="self-end pr-3 text-lg font-semibold text-rose-500">${product.price * quantity}</span>
+        </div>
       </div>
-      <div>
-        <button onClick={() => handleUpdate(quantity === 1 ? 1 : quantity - 1)} disabled={quantity > 1 ? false : true}>-</button>
-        {quantity}
-        <button onClick={() => handleUpdate(quantity + 1)}>+</button>
-        <button onClick={() => removeProduct(product.id)}>Remove</button>
-      </div>
+      <button className="absolute top-0 right-0 py-1 px-2 text-slate-400" onClick={() => removeProduct(product.id)}>x</button>
     </div>
   );
 }
