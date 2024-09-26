@@ -66,15 +66,24 @@ function TakeOrder({ productsToAdd, setProductsToAdd } : TakeOrderProps) {
   );
 
   return (
-    <div>
-      <h2>New Order</h2>
-      <label>Customer:
-        <input type="text" value={client} onChange={e => setClient(e.target.value)} />
-      </label>
-      {alert && <div>New order successfully sent</div>}
+    <div className="p-4 bg-gray-100 mr-4">
+      <h2 className="text-xl font-bold text-gray-700 pb-2">New Order</h2>
       {productsTotal}
-      <p>Total: ${total}</p>
-      <button onClick={handleCreateOrder} disabled={!client.trim() || total==0 ? true : false}>Send to kitchen</button>
+      {!alert && 
+      <>
+        <div className="flex justify-between font-semibold text-lg border-y border-dashed border-gray-600 py-1 my-5">
+          <span>Total:</span><span>${total}</span>
+        </div>
+        <div>
+          <input className="w-full border rounded placeholder:italic p-1 mb-4" type="text" id="customer" value={client} placeholder="Customer's name" onChange={e => setClient(e.target.value)} />
+        </div>
+      </>}
+      {alert && 
+      <div className="pt-4 pb-5 mb-3 text-center bg-amber-100">
+        <p className="text-xl font-bold text-green-600">✓</p>
+        New order sent
+      </div>}
+      <button className="bg-rose-500 text-white p-2 w-full border rounded-lg disabled:bg-rose-400" onClick={handleCreateOrder} disabled={!client.trim() || total==0 ? true : false}>Send to kitchen</button>
     </div>
   );
 }
