@@ -28,21 +28,17 @@ function ProductList({ products, onAdd } : ProductListProps) {
 
   return (
     <div>
-      <div>
-        <label>
-          <input type="radio" name="filter" value="all" onChange={(e) => setType(e.target.value)} defaultChecked />
-          All
-        </label>
-        <label>
-          <input type="radio" name="filter" value="breakfast" onChange={(e) => setType(e.target.value)} />
-          Breakfast
-        </label>
-        <label>
-          <input type="radio" name="filter" value="lunch" onChange={(e) => setType(e.target.value)} />
-          Lunch
-        </label>
+      <h2 className="text-lg font-bold text-gray-700 pb-2">Select category</h2>
+      <div className={styles.filter}>
+        <input type="radio" name="filter" id="all" value="all" onChange={(e) => setType(e.target.value)} defaultChecked />
+        <label htmlFor="all">All</label>
+        <input type="radio" name="filter" id="breakfast" value="breakfast" onChange={(e) => setType(e.target.value)} />
+        <label htmlFor="breakfast">Breakfast</label>
+        <input type="radio" name="filter" id="lunch" value="lunch" onChange={(e) => setType(e.target.value)} />
+        <label htmlFor="lunch">Lunch</label>
       </div>
-      <div className={styles.productList}>
+      <h2 className="text-lg font-bold text-gray-700 pb-2">Select items</h2>
+      <div className="grid grid-cols-3 gap-[0.6rem] xl:grid-cols-4">
         {productList}
       </div>
     </div>
