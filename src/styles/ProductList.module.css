@@ -1,0 +1,25 @@
+.filter {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  margin-left: -0.75rem;
+}
+
+.filter input[type="radio"] {
+  visibility: hidden;
+}
+
+.filter label {
+  flex-grow: 1;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 600;
+  border: 1px solid #d1d5db;
+  padding: 5px 10px;
+  border-radius: 0.5rem;
+}
+
+.filter input[type="radio"]:checked + label {
+  color: #f43f5e;
+  border: 1px solid #f43f5e;
+}

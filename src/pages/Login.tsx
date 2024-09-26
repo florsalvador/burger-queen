@@ -22,11 +22,15 @@ function Login() {
   };
 
   return (
-    <>
-      <h1>Log in</h1>
-      <form onSubmit={handleSubmit}>
-        <label>Email:
+    <div className="p-4">
+      <h1 className="text-2xl font-bold">
+          🍔 <span className="text-gray-500">Burger</span><span className="text-amber-500">Queen</span>
+      </h1>
+      <h2 className="text-3xl font-semibold text-center mt-4">Log in</h2>
+      <form onSubmit={handleSubmit} className="flex flex-col mt-6 gap-5 w-1/4 m-auto">
+        <label className="flex flex-col self-center w-full">Email:
           <input
+            className="p-1 border border-gray-300 rounded-lg"
             data-testid="emailInput"
             type="email"
             value={email}
@@ -35,8 +39,9 @@ function Login() {
             required
           />
         </label>
-        <label>Password:
+        <label className="flex flex-col self-center w-full">Password:
           <input
+            className="p-1 border border-gray-300 rounded-lg"
             data-testid="passwordInput"
             type="password"
             value={password}
@@ -45,10 +50,10 @@ function Login() {
             required
           />
         </label>
-        <button data-testid="submitButton" type="submit">Log in</button>
+        <button className="w-24 self-center bg-rose-500 text-white p-2 border rounded-lg disabled:bg-rose-400" data-testid="submitButton" type="submit">Log in</button>
       </form>
-      {error && <p data-testid="errorLogin">Incorrect email or password</p>}
-    </>
+      {error && <p className="text-center mt-3 text-rose-500 font-semibold" data-testid="errorLogin">Incorrect email or password</p>}
+    </div>
   );
 }
 
