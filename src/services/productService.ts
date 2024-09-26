@@ -16,6 +16,7 @@ export async function getProducts(): Promise<Product[]> {
   const data = await response.json();
   const products: Product[] = data.map((product: Product) => ({
     ...product,
+    price: product.price/100,
     dateEntry: new Date(product.dateEntry),
   }));
   return products;
