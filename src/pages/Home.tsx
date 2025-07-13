@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getSession, clearSession } from "../services/authService";
 import { getProducts } from "../services/productService";
@@ -55,8 +55,12 @@ function Home() {
       <main className="grid grid-cols-[15%,85%] h-full">
         <div className="pb-24 flex flex-col justify-between bg-gray-100 font-semibold text-gray-600">
           <div className="pt-4">
-            <a className="block bg-white py-3 pl-6" href="#">Menu</a>
-            <a className="block bg-gray-100 py-3 pl-6" href="#">Order List</a>
+            {/* <a className="block bg-white py-3 pl-6" href="#">Menu</a>
+            <a className="block bg-gray-100 py-3 pl-6" onClick={() => navigate("/orders")}>Order List</a> */}
+            {/* <button className="block bg-white py-3 pl-6" onClick={() => navigate("/")}>Menu</button>
+            <button className="block bg-gray-100 py-3 pl-6" onClick={() => navigate("/orders")}>Order List</button> */}
+            <Link to="/" className="block bg-white py-3 pl-6">Menu</Link>
+            <Link to="/orders" className="block bg-gray-100 py-3 pl-6">Order List</Link>
           </div>
           <button data-testid="logoutBtn" onClick={handleLogout}>{"<"} Log out</button>
         </div>

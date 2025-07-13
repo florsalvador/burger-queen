@@ -15,7 +15,7 @@ function ProductCard({ product, onAdd } : ProductCardProps) {
         <h3 className="font-semibold leading-tight">{product.name}</h3>
         <p className="font-semibold">${product.price}</p>
         <div className="w-full mt-4 flex flex-wrap justify-center items-center gap-[8px] text-sm">
-          <button className="bg-slate-200 px-2 py-[0.35rem] border rounded-lg active:bg-gray-300 disabled:bg-gray-100 disabled:text-gray-500" onClick={() => setQuantity(quantity == 1 ? 1 : quantity-1)} disabled={quantity > 1 ? false : true}>-</button>
+          <button className="bg-slate-200 px-2 py-[0.35rem] border rounded-lg active:bg-gray-300 disabled:bg-gray-100 disabled:text-gray-500" onClick={() => setQuantity(quantity-1)} disabled={quantity == 1}>-</button>
           {quantity}
           <button className="bg-slate-200 px-2 py-[0.35rem] border rounded-lg active:bg-gray-300 disabled:bg-gray-100 disabled:text-gray-500" onClick={() => setQuantity(quantity+1)}>+</button>
           <button className="bg-amber-500 text-white px-2 py-[0.35rem] border rounded-lg active:bg-amber-600" onClick={() => {onAdd(quantity, product); setQuantity(1)}}>Add</button>
