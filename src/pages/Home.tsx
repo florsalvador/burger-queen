@@ -22,8 +22,10 @@ function Home() {
     .catch(error => {
       console.error(error);
       setError(true);
+      clearSession();
+      navigate("/login");
     })
-  }, []);
+  }, [navigate]);
 
   const session = getSession();
 
