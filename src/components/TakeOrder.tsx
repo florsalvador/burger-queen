@@ -3,6 +3,7 @@ import { createOrder } from "../services/orderService";
 import { NewOrder } from "../models/Order";
 import Product from "../models/Product";
 import ProductRow from "./ProductRow";
+import { getSession } from "../services/authService";
 
 interface TakeOrderProps {
   productsToAdd: { qty: number, product: Product }[],
@@ -13,12 +14,15 @@ function TakeOrder({ productsToAdd, setProductsToAdd } : TakeOrderProps) {
   const [ client, setClient ] = useState<string>("");
   const [ total, setTotal ] = useState<number>(0);
   const [ alert, setAlert ] = useState(false);
+  const session = getSession();
+  const userId = session.user?.id ?? null;
   const order: NewOrder = {
+    userId: userId,
     client: client,
     products: productsToAdd,
     status: "pending",
-    dataEntry: new Date(),
-  }
+    dateEntry: new Date(),
+  };
   useEffect(() => {
     const newTotal = productsToAdd.reduce((acc, curr) => acc + curr.qty * curr.product.price, 0);
     setTotal(newTotal);
