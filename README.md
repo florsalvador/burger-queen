@@ -1,50 +1,74 @@
-# React + TypeScript + Vite
+# 🍔 Burger Queen - Ordering System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a **React + TypeScript** web application built for a burger restaurant that needs a digital system to take and manage customer orders using tablets. The app integrates with a REST API to handle authentication, menu display and order management from waiters to the kitchen.
 
-Currently, two official plugins are available:
+🔗 **Live Demo:** [Try it here](https://burger-queen-seven.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 📋 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Implemented
+✅ Login page with email and password  
+✅ Clear and user-friendly error messages for invalid credentials or server issues  
+✅ View available menus (breakfast and lunch)  
+✅ Add, remove, and update items in an order  
+✅ See an order summary with total cost  
+✅ Send orders to the kitchen  
+✅ Orders page to view and complete orders  
+✅ Tablet-friendly design  
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 🖥️ Tech Stack
+
+- **Frontend:** React, TypeScript, Vite
+- **Styling:** Tailwind CSS
+- **State Management:** React hooks (`useState`, `useEffect`)
+- **API:** REST API (built with Python, based on client specifications)
+- **Deployment:** Vercel (frontend), Render (backend)
+
+---
+
+## 📦 Installation
+
+Clone this repository:
+
+```bash
+git clone https://github.com/florsalvador/burger-queen.git
+cd burger-queen
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Install dependencies:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+npm install
 ```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+## 🔑 Usage
+
+The application is already integrated with the deployed API. You can test it directly from the Vercel link above.
+
+> ⚠️ Note: The backend is hosted on Render (free plan), which means it may take up to **30 seconds** to wake up after a period of inactivity. Please be patient when logging in for the first time.
+
+### Test Credentials
+
+| Role   | Email            | Password |
+|--------|------------------|----------|
+| Admin  | admin@email.com  | 123456   |
+| Chef   | chef@email.com   | 123456   |
+| Waiter | waiter@email.com | 123456   |
+
+🌐 Deployment
+-------------
+
+- **Frontend:** Deployed on Vercel
+- **Backend API:** Deployed on Render
+  - [Backend Repository](https://github.com/florsalvador/burger-queen-api)
+
