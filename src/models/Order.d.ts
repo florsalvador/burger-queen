@@ -6,13 +6,14 @@ export type Order = {
   client: string;
   products: { qty: number, product: Product }[];
   status: string;
-  dataEntry: Date;
+  dateEntry: Date;
   dateProcessed: Date | null;
 }
 
 export type NewOrder = {
+  userId: number | null;
   client: string;
   products: { qty: number, product: Product }[];
   status: string;
-  dataEntry: Date;
+  dateEntry: Date;
 }

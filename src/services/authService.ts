@@ -10,7 +10,11 @@ export async function loginService(email: string, password: string): Promise<Log
     body: JSON.stringify({ email, password }),
   });
   if (!response.ok) {
-    throw new Error("Invalid credentials");
+    if (response.status === 401) {
+      throw new Error("Invalid credentials");
+    } else {
+      throw new Error("Server error");
+    }
   }
   const { accessToken, user } = await response.json();
   return { accessToken, user };

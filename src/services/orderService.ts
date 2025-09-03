@@ -50,3 +50,19 @@ export async function modifyOrder(id: number, status: string): Promise<Order> {
   const orderInfo = await response.json();
   return orderInfo;
 }
+
+export async function deleteOrder(id: number): Promise<Order> {
+  const session = getSession();
+  const response = await fetch(`${API_URL}/orders/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${session.token}`
+    }
+  });
+  if (!response.ok) {
+    throw new Error("Error deleting order");
+  }
+  const orderInfo = await response.json();
+  return orderInfo;
+}
