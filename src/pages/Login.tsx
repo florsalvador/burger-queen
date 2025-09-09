@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createSession, loginService } from "../services/authService";
 import { healthService } from "../services/healthService";
+import MessageModal from "../components/MessageModal";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -13,6 +14,7 @@ function Login() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     loginService(email, password)
     .then((data) => {
       createSession(data.accessToken, data.user);
@@ -26,17 +28,19 @@ function Login() {
         setMessageError("Something went wrong. Please try again.");
       }
     })
+    .finally(() => {
+      setLoading(false);
+    })
   };
 
   useEffect(() => {
-    setLoading(true);
     const checkHealth = async () => { 
       try {
         await healthService();
         setBackendReady(true);
-        setLoading(false);
       } catch (error) {
         console.error(error);
+        setMessageError("Server is not available right now. Please try again later.");
       }
     }
     checkHealth();
@@ -75,7 +79,7 @@ function Login() {
           className="w-40 self-center bg-rose-500 text-white p-2 border rounded-lg hover:bg-rose-600 disabled:bg-rose-400" 
           data-testid="submitButton" type="submit" disabled={!backendReady || loading}
         >
-          {backendReady ? (loading ? "Signing in..." : "Login") : (
+          {backendReady ? "Login" : (
             <>
               <svg aria-hidden="true" role="status" className="inline mr-2 w-4 h-4 text-gray-200 animate-spin dark:text-gray-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"></path>
@@ -90,6 +94,13 @@ function Login() {
         <p className="text-center mt-3 text-rose-500 font-semibold" data-testid="errorLogin">
           {messageError}
         </p>}
+      <MessageModal isOpen={loading} title="Loading...">
+        <div className="flex justify-center items-center space-x-2">
+          <div className="w-4 h-4 bg-amber-500 rounded-full animate-bounce" />
+          <div className="w-4 h-4 bg-amber-500 rounded-full animate-bounce delay-150" />
+          <div className="w-4 h-4 bg-amber-500 rounded-full animate-bounce delay-300" />
+        </div>
+      </MessageModal>
     </div>
   );
 }
