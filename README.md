@@ -55,7 +55,7 @@ npm run dev
 
 The application is already integrated with the deployed API. You can test it directly from the Vercel link above.
 
-> ⚠️ Note: The backend is hosted on Render (free plan), which means it may take up to **30 seconds** to wake up after a period of inactivity. Please be patient when logging in for the first time.
+> ⚠️ Note: The first login attempt may fail. Simply try again and it will work.
 
 ### Test Credentials
 
